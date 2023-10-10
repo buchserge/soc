@@ -5,6 +5,7 @@
 + React
 + Redux Toolkit
 + Redux Toolkit RTK query
++ JWT and Refresh tokens
 + Redux Persist
 + React Router
 + React Hook Form
