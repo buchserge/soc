@@ -1,6 +1,6 @@
 import { useLoginUserMutation } from "../../store/api/authApi";
 import { RegisterInput } from "../../models/messageTypes";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import "./Login.css";
 
@@ -22,7 +22,9 @@ export const Login = () => {
       {isSuccess && <Navigate to="/" />}
 
       <form className="frm" onSubmit={handleSubmit(handleLogin)}>
-        <p className="loginTitle"> Login</p>
+        <div className="loginTitle">
+       <Link to="/reg">Register</Link> <p > Login</p> 
+        </div>
         <input
           placeholder="name"
           type="text"

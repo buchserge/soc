@@ -20,6 +20,19 @@ input:focus {
 .loginTitle {
   font-size: 18px;
   text-align: center;
+
+}
+.loginTitle a {
+  margin-block: 5px;
+  text-decoration: none;
+  font-size: 20;
+  color: #080808;
+  display: block;
+
+
+}
+.loginTitle a:hover {
+  color: #1b55d3;
 }
 .submit {
   border-radius: 16px;

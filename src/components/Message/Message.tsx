@@ -11,7 +11,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import "./Message.css";
 import imgg from "../../assets/images/yyy.jpg";
 import aaa from "../../assets/images/aaa.jpg";
-import React from "react";
+import React, { useEffect } from "react";
 
 import { Sidenav } from "../Sidenav/Sidenav";
 import { Navigate, useSearchParams } from "react-router-dom";
@@ -41,6 +41,9 @@ export const Message = () => {
     setTerm("");
     setDisabled(true);
   }
+  useEffect(() => {
+    setDisabled(false);
+  });
 
   const onDeleteHandler = (id: number) => {
     deleteMessage(id);
@@ -94,14 +97,13 @@ export const Message = () => {
                   <img className="img_first" src={imgg} alt="" />
 
                   <div className="inside_basic">
-                    <p className="txt">{message.name}</p>
+                    <p className="txt">{message.userDto?.name}</p>
                     <p className="txt2">{message.text}</p>
                   </div>
                 </div>
                 <div className="icons">
                   <div className="icon1">
                     {message.userLikes?.find((u) => {
-                     
                       return u.name === messagesWrapper.userName;
                     }) ? (
                       <div onClick={() => setLike(message.id)}>

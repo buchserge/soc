@@ -5,6 +5,7 @@ export interface Message {
   comments: Comment[];
   userLikes:User[];
   likeCount:number;
+  userDto:User
 }
 
 export interface CommentPage {
@@ -19,7 +20,8 @@ export interface CommentPage {
 export interface MessagePage{
   pageList :Message[],
    pageCount: number|void,
-  totalElements: number
+  totalElements: number,
+ 
 
 }
 
