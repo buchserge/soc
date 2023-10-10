@@ -1,0 +1,40 @@
+.frm {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  margin-inline: 600px;
+  justify-content: center;
+}
+input {
+  width: auto;
+  margin-block: 10px;
+  padding: 10px;
+  text-align: center;
+  border-radius: 16px;
+  border-width: 1px ;
+  
+}
+input:focus {
+  outline-color: #1b55d3;
+}
+.loginTitle {
+  font-size: 18px;
+  text-align: center;
+}
+.submit {
+  border-radius: 16px;
+  transition-duration: 0.2s;
+  padding: 10px;
+  border-width: 1px;
+  width: 250px;
+  align-self: center;
+}
+.submit:hover {
+  background-color: #1b55d3; /* Green */
+  color: white;
+  cursor: pointer;
+}
+.alert {
+  text-align: center;
+  color: crimson;
+}
