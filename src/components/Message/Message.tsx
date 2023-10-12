@@ -16,14 +16,17 @@ import React, { useEffect } from "react";
 import { Sidenav } from "../Sidenav/Sidenav";
 import { Navigate, useSearchParams } from "react-router-dom";
 import { Pagination } from "../Pagination/Pagination";
-import { AuthError } from "../../models/messageTypes";
+import { AuthError, MessageType } from "../../models/messageTypes";
 import { CommentModal } from "../CommentModal/CommentModal";
+import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
 
 export const Message = () => {
   const [msgId, setMsgId] = React.useState<number>();
   const [isOpen, setIsOpen] = React.useState(false);
 
-  const [term, setTerm] = React.useState("");
+
+
+  const { register, handleSubmit,  reset } = useForm<FieldValues>();
 
   const [setLike] = useSetLikeMutation();
   const [disabled, setDisabled] = React.useState(false);
@@ -35,12 +38,13 @@ export const Message = () => {
     Number(searchParams.get("page"))
   );
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    createOne(term);
-    setTerm("");
+  const handleMessageinput: SubmitHandler<FieldValues> = (data) => {
+    createOne(data as MessageType);
+    reset();
     setDisabled(true);
-  }
+  };
+
+
   useEffect(() => {
     setDisabled(false);
   });
@@ -77,14 +81,14 @@ export const Message = () => {
 
             <p>{messagesWrapper?.userName}</p>
 
-            <form className="fff" onSubmit={handleSubmit}>
+            <form className="fff" onSubmit={handleSubmit(handleMessageinput)}>
               <input
                 className="mainFeedUser"
                 placeholder="What is happening?"
                 type="text"
-                value={term}
+          
                 disabled={disabled}
-                onChange={(e) => setTerm(e.target.value)}
+                {...register("text")}
               />
             </form>
           </div>

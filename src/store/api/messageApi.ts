@@ -7,11 +7,12 @@ import {
   fetchBaseQuery,
 } from "@reduxjs/toolkit/dist/query/react";
 import {
-  AuthError,
+
   AuthResponse,
-  Message,
+ 
+  MessageType,
   MessagesWrapper,
-  User,
+  
 } from "../../models/messageTypes";
 import { setJwtToken, setRefreshToken } from "../slices/jwtSlice";
 import { RootState } from "../store";
@@ -85,15 +86,15 @@ export const messageApi = createApi({
       providesTags: ["message"],
     }),
 
-    createOne: build.mutation<Message, string>({
-      query: (message) => ({
+    createOne: build.mutation<MessageType, MessageType>({
+      query: ({text}) => ({
         url: "messagePost",
         method: "POST",
-        body: { text: message },
+        body: {text:text},
       }),
       invalidatesTags: ["message"],
     }),
-    deleteMessage: build.mutation<Message, number>({
+    deleteMessage: build.mutation<MessageType, number>({
       query: (id) => ({
         url: `deleteMessage/${id}`,
         method: "DELETE",

@@ -2,18 +2,24 @@ import React from "react";
 import "./CommentModal.css";
 import { usePostCommentMutation } from "../../store/api/commentApi";
 import { Navigate } from "react-router-dom";
-import { CommentModalType, RegisterInput } from "../../models/messageTypes";
+import {
+  Comment,
+  CommentModalType,
+  MessageType,
+  RegisterInput,
+} from "../../models/messageTypes";
+import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
 
 export const CommentModal = ({ setIsOpen, messageId }: CommentModalType) => {
+ 
   const [postComment, { isSuccess, isError }] = usePostCommentMutation();
-  const [comment, setComment] = React.useState("");
+  const { register, handleSubmit, reset } = useForm<FieldValues>();
 
-
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    await postComment({ comment, messageId } as RegisterInput);
-
+  const handleCommentinput: SubmitHandler<FieldValues> = async (data) => {
+    let dataComment = data as Comment;
+    dataComment.messageId = messageId;
+    await postComment(dataComment);
+    reset();
     setIsOpen(false);
   };
 
@@ -32,13 +38,8 @@ export const CommentModal = ({ setIsOpen, messageId }: CommentModalType) => {
             ✖
           </button>
           <div className="modalContent">
-            <form onSubmit={handleSubmit}>
-              <input
-                type="text"
-                className="send"
-                name="commentText"
-                onChange={(e) => setComment(e.target.value)}
-              />
+            <form onSubmit={handleSubmit(handleCommentinput)}>
+              <input type="text" className="send" {...register("text")} />
               <input className="submitModal" type="submit" value="send" />
             </form>
           </div>

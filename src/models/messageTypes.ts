@@ -1,4 +1,4 @@
-export interface Message {
+export interface MessageType {
   id: number;
   text: string;
   name: string;
@@ -18,7 +18,7 @@ export interface CommentPage {
   messages:MessagePage, 
 }
 export interface MessagePage{
-  pageList :Message[],
+  pageList :MessageType[],
    pageCount: number|void,
   totalElements: number,
  
@@ -35,12 +35,13 @@ export interface User {
 export interface Comment {
   id: number;
   text: string;
-  message?: Message;
+  message?: MessageType;
+  messageId?:number;
 }
 export interface RegisterInput {
   name: string;
   password: string;
-  messageId?:number;
+
   comment?:string;
   
 }

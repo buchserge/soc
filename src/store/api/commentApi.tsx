@@ -8,6 +8,7 @@ import {
 } from "@reduxjs/toolkit/query/react";
 import {
   AuthResponse,
+  Comment,
   CommentPage,
   RegisterInput,
 } from "../../models/messageTypes";
@@ -84,11 +85,11 @@ export const commentApi = createApi({
         params: { page },
       }),
     }),
-    postComment: builder.mutation<string, RegisterInput>({
-      query: ({ comment, messageId }) => ({
+    postComment: builder.mutation<string, Comment>({
+      query: ({ text, messageId }) => ({
         url: "createComment",
         method: "POST",
-        body: { text: comment },
+        body: { text: text },
         params: { messageId },
       }),
       invalidatesTags: ["comment"],
