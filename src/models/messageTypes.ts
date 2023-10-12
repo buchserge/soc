@@ -3,47 +3,43 @@ export interface MessageType {
   text: string;
   name: string;
   comments: Comment[];
-  userLikes:User[];
-  likeCount:number;
-  userDto:User
+  userLikes: User[];
+  likeCount: number;
+  userDto: User;
 }
 
 export interface CommentPage {
-  totalPages: number|void,
-  totalElements: number
-  content: Comment[] ,
-  
-}export interface MessagesWrapper {
-  userName:string,
-  messages:MessagePage, 
+  totalPages: number | void;
+  totalElements: number;
+  content: Comment[];
 }
-export interface MessagePage{
-  pageList :MessageType[],
-   pageCount: number|void,
-  totalElements: number,
- 
-
+export interface MessagesWrapper {
+  userName: string;
+  messages: MessagePage;
+}
+export interface MessagePage {
+  pageList: MessageType[];
+  pageCount: number | void;
+  totalElements: number;
 }
 
 export interface PaginationType {
-  
-  totalPages:number|void
+  totalPages: number | void;
 }
 export interface User {
-  name:string,
+  name: string;
 }
 export interface Comment {
   id: number;
   text: string;
   message?: MessageType;
-  messageId?:number;
+  messageId?: number;
 }
 export interface RegisterInput {
   name: string;
   password: string;
 
-  comment?:string;
-  
+  comment?: string;
 }
 export interface AuthResponse {
   accessToken: string;
@@ -54,10 +50,10 @@ export interface AuthResponse {
 
 export interface CommentModalType {
   setIsOpen: (arg: boolean) => void;
-  messageId?:number
+  messageId?: number;
 }
 export interface AuthError {
-  error_message?: string |undefined;
-  status?:number;
-  data?:string
+  error_message?: string | undefined;
+  status?: number;
+  data?: string;
 }

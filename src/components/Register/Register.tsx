@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useRegisterUserMutation } from "../../store/api/authApi";
 import { RegisterInput } from "../../models/messageTypes";
 import { useNavigate } from "react-router-dom";
-import { useAppSelector, useAppDispatch } from "../../store/hooks";
 import "./Register.css";
 import { SubmitHandler, FieldValues, useForm } from "react-hook-form";
 

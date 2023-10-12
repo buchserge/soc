@@ -5,8 +5,6 @@ import { Navigate } from "react-router-dom";
 import {
   Comment,
   CommentModalType,
-  MessageType,
-  RegisterInput,
 } from "../../models/messageTypes";
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
 
