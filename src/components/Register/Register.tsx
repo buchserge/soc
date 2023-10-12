@@ -4,23 +4,19 @@ import { RegisterInput } from "../../models/messageTypes";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../../store/hooks";
 import "./Register.css";
+import { SubmitHandler, FieldValues, useForm } from "react-hook-form";
 
 export const Register = () => {
-  const jwt = useAppSelector((state) => state.jwt.jwtToken);
-
+  const { register, handleSubmit, formState: { errors }, } = useForm<FieldValues>();
   const [registerUser, result] = useRegisterUserMutation();
-  const [state, setState] = React.useState<RegisterInput>({
-    userName: "",
-    password: "",
-  });
-  const [userName, setTerm] = React.useState<string>("");
-  const [password, setTerm2] = React.useState<string>("");
+
   const navigate = useNavigate();
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    registerUser({ userName, password });
-  }
+  const handleRegister: SubmitHandler<FieldValues> = (data) => {
+    registerUser(data as RegisterInput);
+  };
+
+  
   useEffect(() => {
     if (result.isSuccess) {
       navigate("/login");
@@ -29,18 +25,30 @@ export const Register = () => {
 
   return (
     <>
-      <form className="frm" onSubmit={handleSubmit}>
+      <form className="frm" onSubmit={handleSubmit(handleRegister)}>
         <p className="regTitle"> Registration</p>
         <input
           placeholder="name"
           type="text"
-          onChange={(e) => setTerm(e.target.value)}
+          {...register("name", { required: true })}
         />
+         {errors.password?.type === "required" && (
+          <p className="alert" role="alert">
+            {" "}
+            field can not be empty
+          </p>
+        )}
         <input
           placeholder="password"
           type="text"
-          onChange={(e) => setTerm2(e.target.value)}
+          {...register("password", { required: true })}
         />
+         {errors.password?.type === "required" && (
+          <p className="alert" role="alert">
+            {" "}
+           field can not be empty
+          </p>
+        )}
         <input className="submit" type="submit" value="register"></input>
       </form>
     </>

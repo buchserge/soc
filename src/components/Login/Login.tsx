@@ -28,7 +28,7 @@ export const Login = () => {
         <input
           placeholder="name"
           type="text"
-          {...register("userName", { required: true })}
+          {...register("name", { required: true })}
         />
         {errors.userName?.type === "required" && (
           <p className="alert" role="alert">

@@ -14,7 +14,7 @@ export const authApi = createApi({
         return {
           url: "addNewUser",
           method: "POST",
-          body: { password: data.password, name: data.userName },
+          body: { password: data.password, name: data.name },
           responseHandler: "text",
         };
       },
@@ -26,7 +26,7 @@ export const authApi = createApi({
         return {
           url: "generateToken",
           method: "POST",
-          body: { password: data.password, name: data.userName },
+          body: { password: data.password, name: data.name },
           responseHandler: "text",
         };
       },

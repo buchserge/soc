@@ -38,7 +38,7 @@ export interface Comment {
   message?: Message;
 }
 export interface RegisterInput {
-  userName: string;
+  name: string;
   password: string;
   messageId?:number;
   comment?:string;
